@@ -1,0 +1,54 @@
+\documentclass[a4paper,11pt]{extarticle}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+
+\usepackage{fontspec}
+\setmonofont{FreeMono}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{0.5em}
+
+\usepackage{textcomp}
+
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{xcolor}
+
+\usepackage{minted}
+\newminted{cpp}{breaklines,fontsize=\small}
+\newminted{text}{breaklines,fontsize=\small}
+
+\definecolor{mintedbg}{rgb}{0.95,0.95,0.95}
+\usepackage{mdframed}
+
+\BeforeBeginEnvironment{minted}{\begin{mdframed}[backgroundcolor=mintedbg]}
+\AfterEndEnvironment{minted}{\end{mdframed}}
+
+\title{
+MI3103 \\
+Praktikum Antar Muka Komputer\\
+Pengenalan Flask: Python \textit{Web Framework}}
+\author{Fadjar Fathurrahman}
+\date{2018}
+
+\begin{document}
+\maketitle
+
+\section{Tujuan}
+\begin{itemize}
+\item Dapat merancang website sederhana dengan menggunakan Flask
+\item HMTL, CSS, Javascript
+\end{itemize}
+
+\section{Perangkat lunak yang diperlukan}
+\begin{itemize}
+\item Linux OS
+\item Distribusi Anaconda untuk Python 3
+\item Browser
+\item Editor teks seperti \textsf{gedit}, \textsf{VSCode}, \textsf{Atom}
+\end{itemize}
+
+\section{Flask}
+
+
+\end{document}
