@@ -1,0 +1,91 @@
+\documentclass[a4paper,11pt]{extarticle}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+
+\usepackage{fontspec}
+\setmonofont{FreeMono}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{0.5em}
+
+\usepackage{textcomp}
+
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{xcolor}
+
+\usepackage{minted}
+\newminted{pycon}{breaklines,fontsize=\small}
+\newminted{python}{breaklines,fontsize=\small}
+\newminted{text}{breaklines,fontsize=\small}
+
+\definecolor{mintedbg}{rgb}{0.95,0.95,0.95}
+\usepackage{mdframed}
+
+\BeforeBeginEnvironment{minted}{\begin{mdframed}[backgroundcolor=mintedbg]}
+\AfterEndEnvironment{minted}{\end{mdframed}}
+
+\title{
+MI3103 \\
+Praktikum Antar Muka Komputer\\
+Flask}
+\author{Fadjar Fathurrahman}
+\date{2018}
+
+\begin{document}
+\maketitle
+
+Buat kode Python berikut dengan nama \texttt{hello\_v1.py}
+\begin{pythoncode}
+from flask import Flask
+
+app = Flask(__name__)
+@app.route("/")
+def hello():
+    return "Hello ..."
+\end{pythoncode}
+
+Pada terminal:
+\begin{textcode}
+export FLASK_APP=hello_v1.py
+flask run
+\end{textcode}
+
+\textbf{Catatan:} Jika Anda telah memasang \textsf{Anaconda} namun
+belum menambahkannya ke \texttt{PATH}, Anda harus menggunakan
+fullpath lengkap ke \texttt{flask}. Contoh:
+\begin{textcode}
+/home/students/anaconda3/bin/flask run
+\end{textcode}
+
+Perintah \texttt{flask run} juga dapat diganti dengan \texttt{python -m flask}.
+
+Alamat default: \url{http://127.0.0.1:5000}
+
+Agar dapat diakses oleh komputer lain:
+\begin{textcode}
+flask run --host=0.0.0.0
+\end{textcode}
+
+Alternatif, tanpa menggunakan perintah \texttt{flask run}, langsung menggunakan
+\texttt{python}, tambahkan baris berikut ini:
+\begin{pythoncode}
+if __name__ == "__main__":
+    app.run()
+\end{pythoncode}
+
+Mengaktifkan debugger, set variabel berikut ini pada shell sebelum
+memanggil \texttt{flask run}.
+
+\begin{textcode}
+export FLASK_DEBUG=1
+\end{textcode}
+
+Debugging mode juga dapat diaktifkan dari script dengan menggunakan
+\begin{pythoncode}
+app = Flask(__name__)
+app.debug = True
+\end{pythoncode}
+
+
+\end{document}
