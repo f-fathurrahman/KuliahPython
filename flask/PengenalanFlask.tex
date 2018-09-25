@@ -175,8 +175,52 @@ Sekarang coba akses web Anda dari komputer lain dengan menggunakan browser.
 Dari komputer tersebut Anda harus mengganti 127.0.0.1 dengan alamat IP komputer
 Anda di mana webserver Flask dijalankan.
 
+\section{HTTP Client dari baris perintah}
 
+Internet browser bukanlah satu-satunya cara untuk mengakses website (HTTP server).
+Kita juga dapat berinteraksi dengan cara lain, misalnya dengan menggunakan program
+\texttt{wget} atau sejenisnya. Pada bagian ini kita akan menggunakan pustaka Python
+bernama \texttt{Requests} untuk berinteraksi dengan web server.
 
+Buat file dengan nama \texttt{simple\_request.py}. Ketikkan kode berikut ini pada
+file tersebut.
+\begin{pythoncode}
+from __future__ import print_function
+import requests
+import sys
+Nargs = len(sys.argv)
+print("Nargs = ", Nargs)
+if Nargs < 2:
+    url_text = "http://localhost:5000/"  # default pada Flask web server
+else:
+    url_text = sys.argv[1]
+print("url_text = ", url_text)
+r = requests.get(url_text)
+print("Status = %s" % r.status_code)
+print("Reason = %s" % r.reason)
+print("HTML response follows\n\n")
+print(r.text)
+\end{pythoncode}
+
+Pada terminal ketik perintah-perintah berikut:
+\begin{textcode}
+python simple_request.py
+\end{textcode}
+jika Flask web server Anda sedang berjalan.
+
+Coba juga
+\begin{textcode}
+python simple_request.py http://tf.itb.ac.id
+\end{textcode}
+atau dengan alamat URL yang Anda inginkan.
+
+\textbf{Tugas} Coba jelaskan kode Python yang baru saja Anda buat.
+Anda dapat menggunakan sumber berikut (hanya sebagai contoh, Anda dapat menggunakan
+sumber lainnya).
+\begin{itemize}
+\item \url{http://docs.python-requests.org/en/master/user/quickstart/}
+\item \url{https://www.pythonforbeginners.com/requests/the-awesome-requests-module}
+\end{itemize}
 
 \end{document}
 
