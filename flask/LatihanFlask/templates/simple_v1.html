@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Ini praktikum MI3103</title>
+  <style>
+    body {
+      color: black;
+    }
+    
+    h1 {
+      font-family: Arial, Helvetica, sans-serif;
+      font-style: italic;
+    }
+
+    p, li {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #my_par {
+      font-size: 30pt;
+    }
+
+    a {
+      font-family: fantasy;
+      font-size: 20pt;
+      color: fuchsia;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    th, td {
+      padding: 20px;
+    }
+
+    input:invalid {
+      border: 2px dashed red;
+    }
+
+    input:valid {
+      border: 2px solid blue;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Judul header 1</h1>
+
+<p>
+Contoh paragraf. Contoh paragraf.
+Contoh paragraf. Contoh paragraf.
+Contoh paragraf. Contoh paragraf.
+</p>
+
+<p>
+  <strong>Contoh strong</strong>
+</p>
+
+<p>
+  <em>Contoh emphasized</em>.
+</p>
+
+<p>
+  <b>Contoh bold</b>
+</p>
+
+<p>
+  <i>Contoh italic</i>
+</p>
+
+<p>
+  <mark>Contoh mark</mark>  
+</p>
+
+<p>
+  <del>Contoh del</del>
+</p>
+
+<h2>Judul header 2</h2>
+
+<p>
+  Contoh unordered list:
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+  </ul>
+</p>
+
+<p>
+  Contoh ordered list:
+  <ol>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+  </ol>
+</p>
+
+<div id="my_par">
+  <p>
+    Contoh ordered list:
+    <ol type="A">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+      <li>Item 4</li>
+    </ol>
+  </p>
+</div>
+
+<h3>Judul header 3</h3>
+
+<table>
+  <tr>
+    <th>Judul kolom 1</th>
+    <th>Judul kolom 2</th>
+    <th>Judul kolom 3</th>
+  </tr>
+  <tr>
+    <td>Data 1</td>
+    <td>Data 2</td>
+    <td>Data 3</td>
+  </tr>
+  <tr>
+    <td>Data 1 lagi</td>
+    <td>Data 2 lagi</td>
+    <td>Data 3 lagi</td>
+  </tr>
+</table>
+
+
+<h4>Judul header 4</h4>
+
+<p>
+Contoh link
+<a href="http://tf.itb.ac.id">Website TF ITB</a>
+</p>
+
+<h1>Contoh form lagi</h1>
+
+<form action="http://localhost:5000/harga_buah">
+  <label for="pilih">Mau pisang atau ceri</label>
+  <input id="pilih" name="input1" required pattern="[Pp]isang|[Cc]eri">
+  <br>
+  <label for="jumlah">Jumlahnya berapa?</label>
+  <input type="number" id="jumlah" name="input2" required
+         value="1" min="1" max="5"><br>
+  <button>Selesai</button>
+</form>
+
+</body>
+
+</html>
