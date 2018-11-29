@@ -1,6 +1,7 @@
 *.swp
 *.swo
 *~
+*.db
 
 TEMP_*
 LOG_*
