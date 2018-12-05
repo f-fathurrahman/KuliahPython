@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+
+<body>
+
+<form action="">
+Masukkan nama Anda: <br>
+<input type="text" id="nama"><br>
+
+Masukkan NIM Anda: <br>
+<input type="text" id="NIM"><br>
+
+<input type="submit" value="OK" onclick="tampilkanPesan()">
+
+</form>
+
+<script>
+function tampilkanPesan()
+{
+    var nama = document.getElementById("nama").value;
+    var NIM = document.getElementById("NIM").value;
+    alert("Nama Anda: " + nama + "\n" + "NIM Anda: " + NIM);
+}
+</script>
+
+</body>
+
+
+</html>
