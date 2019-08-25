@@ -57,20 +57,29 @@ double_it(3)
 \end{pythoncode}
 
 
-\subsection{Passing by value}
+\subsection{Modifikasi parameter fungsi}
 
-Can you modify the value of a variable inside a function? Most languages (C, Java, …)
-distinguish “passing by value” and “passing by reference”. In Python, such a distinction
-is somewhat artificial, and it is a bit subtle whether your variables are going to be modified
-or not. Fortunately, there exist clear rules.
+Sebagian besar bahasa pemrograman seperti C dan Java membedakan antara
+\textit{pass-by-value} dan \textit{pass-by-reference}.
+Pada fungsi dengan \textit{pass-by-value}, argumen pada fungsi tidak dapat
+diubah karena hanya nilainya saja yang diberikan, sedangkan untuk
+\textit{pass-by-reference} argumen pada fungsi dapat diubah nilainya.
+Pada Python, tidak ada aturan khusus mengenai apakah suatu argumen pada suatu
+fungsi bersifat \textit{pass-by-value} atau \textit{pass-by-reference}.
 
-Parameters to functions are references to objects, which are passed by value.
-When you pass a variable to a function, python passes the reference to the object
-to which the variable refers (the value). Not the variable itself.
+%Parameter pada suatu fungsi adalah referensi ke objek yang diberikan
+%dengan nilai. Ketika suatu variabel diberikan ke suatu fungsi, Python
+%akan memberikan referensi ke objek yang dirujuk oleh variabel yaitu
+%suatu nilai, bukan variabel itu sendiri.
 
-If the value passed in a function is immutable, the function does not modify the
-caller’s variable. If the value is mutable, the function may modify the caller's
-variable in-place:
+Jika nilai yang diberikan pada suatu fungsi bersifat \textit{immutable}, fungsi
+tidak akan memodifikasi variabel tersebut. Jika nilai tersebut bersifat
+\textit{mutable}, maka fungsi dapat mengubah nilai tersebut.
+
+Tipe data sepertin \texttt{int}, \texttt{float},
+\texttt{bool}, \texttt{str}, \texttt{tuple} bersifat \textit{immutable}.
+Sedangkan \texttt{list}, \texttt{set}, \texttt{dict}
+bersifat \textit{mutable}. 
 
 \begin{pythoncode}
 def try_to_modify(x, y, z):
@@ -81,8 +90,8 @@ def try_to_modify(x, y, z):
     print(y)
     print(z)
 
-a = 77    # immutable variable
-b = [99]  # mutable variable
+a = 77    # variabel immutable
+b = [99]  # variabel mutable
 c = [28]
 try_to_modify(a, b, c)
 print(a)
@@ -90,12 +99,11 @@ print(b)
 print(c)
 \end{pythoncode}
 
-Functions have a local variable table called a local namespace.
 Fungsi memiliki lingkup variabel sendiri. Dalam kode sebelumnya,
 variabel \texttt{x} hanya ada di dalam fungsi \texttt{try\_to\_modify}.
 
 
-\subsection{Global variables}
+\subsection{Variabel global}
 
 Variable yang dideklarasikan di luar sebuh fungsi dapat direferensi (digunakan)
 di dalam sebuah fungsi.
@@ -170,4 +178,18 @@ va = variable_args
 va('three', x=1, y=2)
 \end{pythoncode}
 
+\subsection{Metode}
+
+Metode adalah fungsi yang dapat diakses dari suatu objek.
+Kita telah menggunakan metode pada contoh-contoh sebelumnya.
+Misalnya pada objek string:
+\begin{pyconcode}
+>>> a = "My name is Jojo"
+>>> a.upper()
+'MY NAME IS JOJO'
+>>> a.replace("Jojo", "Koko")
+'My name is Koko
+\end{pyconcode}
+Metode atau fungsi \texttt{upper()} dan \texttt{replace()} diakses melalui objek
+\texttt{a} yang merupakan sebuah string.
 
