@@ -1,0 +1,156 @@
+\section{Kontrol alur program}
+
+\subsection{Percabangan: \texttt{if/elif/else}}
+  
+\begin{pyconcode}
+>>> a = 2
+>>> if a < 0:
+...     print("a bernilai negatif")
+... else:
+...     print("a bernilai positif")
+... 
+\end{pyconcode}
+
+
+\textbf{Indentasi sangat penting pada Python.}
+
+Jika Anda kesulitan atau tidak nyaman menuliskan di konsol, Anda
+dapat menuliskannya di file dengan ekstensi \texttt{*.py}.
+Anda tidak perlu menuliskan \verb|>>>| atau \verb|...|.
+
+Contoh lain
+\begin{pyconcode}
+>>> a = 10 
+>>> if a == 1:
+...     print(1)
+... elif a == 2:
+...     print(2)
+... else:
+...     print('A lot')
+... 
+A lot
+\end{pyconcode}
+
+
+\subsection{Perulangan: \texttt{for/range}}
+
+Perulangan dengan indeks
+\begin{pyconcode}
+>>> for i in range(4):
+...     print(i)
+... 
+0
+1
+2
+3
+\end{pyconcode}
+
+Iterasi terhadap nilai:
+\begin{pyconcode}
+>>> for word in ('cool', 'powerful', 'readable'):
+...     print('Python is %s' % word)
+...
+Python is cool
+Python is powerful
+Python is readable
+\end{pyconcode}
+
+\subsection{Perulangan: \texttt{while/break/continue}}
+
+\begin{pyconcode}
+>>> a = 3;
+>>> while a < 10:
+...     a = a + 1
+... 
+>>> a
+10
+\end{pyconcode}
+
+\texttt{break} dapat digunakan untuk
+keluar dari loop \texttt{for} atau \texttt{while}
+\begin{pyconcode}
+>>> a = 10;
+>>> while a > 0:
+...     a = a - 2
+...     if a < 3: break
+... 
+>>> a
+2
+\end{pyconcode}
+
+
+\texttt{continue} dapat digunakan untuk meneruskan ke
+iterasi selanjutnya (biasanya untuk melangkaui suatu iterasi)
+\begin{pyconcode}
+>>> a = [1, 0, 2, 4]
+>>> for element in a:
+...     if element == 0:
+...         continue
+...     print(1.0/element)
+...     
+1.0
+0.5
+0.25
+\end{pyconcode}
+
+
+\subsection{Iterasi pada string, list, dan dictionary}
+
+Kita dapat melakukan iterasi terhadap string, list dan dictionary
+\begin{pyconcode}
+>>> vowels = 'aeiouy'
+>>> for i in 'powerful':
+...     if i in vowels:
+...         print(i),
+...         
+...         
+o e u
+\end{pyconcode}
+
+Contoh
+\begin{pyconcode}
+>>> message = "Hello how are you?"
+>>> message.split() # mengembalikan list
+['Hello', 'how', 'are', 'you?']
+>>> for word in message.split():
+...     print word
+...     
+Hello
+how
+are
+you?
+\end{pyconcode}
+
+Contoh:
+\begin{pyconcode}
+>>> words = ('cool', 'powerful', 'readable')
+>>> for i in range(0, len(words)):
+....     print(i, words[i])
+....     
+....     
+0 cool
+1 powerful
+2 readable
+\end{pyconcode}
+
+Fungsi \texttt{enumerate} juga dapat digunakan
+\begin{pyconcode}
+>>> words = ('cool', 'powerful', 'readable')
+>>> for index, item in enumerate(words):
+...     print index, item
+...     
+0 cool
+1 powerful
+2 readable
+\end{pyconcode}
+
+
+Loop pada dictionary dengan menggunakan \texttt{items()}
+\begin{pyconcode}
+>>> d = {"a" : 1, "b" : 1.2, "c" : 1j}
+>>> for key, val in d.items():
+        print('Key: %s has value: %s' % (key, val)
+Key: a has value: 1
+Key: c has value: 1j
+Key: b has value: 1.2
+\end{pyconcode}

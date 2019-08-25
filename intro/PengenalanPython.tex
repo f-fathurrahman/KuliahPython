@@ -2,8 +2,10 @@
 \usepackage[a4paper]{geometry}
 \geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
 
-\usepackage{fontspec}
-\setmonofont{FreeMono}
+%\usepackage{fontspec}
+%\setmainfont{Liberation Serif}
+%\setmonofont{Liberation Mono}
+%\setmonofont{Fira Code}
 
 \setlength{\parindent}{0cm}
 \setlength{\parskip}{0.5em}
@@ -19,23 +21,23 @@
 \newminted{python}{breaklines,fontsize=\small}
 \newminted{text}{breaklines,fontsize=\small}
 
-\definecolor{mintedbg}{rgb}{0.95,0.95,0.95}
+\definecolor{myframebg}{rgb}{0.95,0.95,0.95}
 \usepackage{mdframed}
 
-\BeforeBeginEnvironment{minted}{\begin{mdframed}[backgroundcolor=mintedbg]}
-\AfterEndEnvironment{minted}{\end{mdframed}}
+\usepackage{hyperref}
 
 \title{
 MI3103 \\
 Praktikum Antar Muka Komputer\\
 Pengantar Pemrograman Python}
 \author{Fadjar Fathurrahman}
-\date{2018}
+\date{2019}
 
 \begin{document}
 \maketitle
 
 \section{Tujuan}
+Tujuan dari praktikum ini adalah sebagai berikut.
 \begin{itemize}
 \item dapat membuat dan mengeksekusi program Python sederhana
 \item mampu mengenal dan menggunakan tipe data dasar pada Python
@@ -44,671 +46,80 @@ perulangan)
 \item mampu membuat fungsi sederhana (subrutin) pada Python
 \end{itemize}
 
+Mampu menjawab pertanyaan-pertanyaan berikut.
+
+
 \section{Perangkat lunak yang diperlukan}
+
+Berikut adalah beberapa perangkat lunak yang diperlukan.
+
 \begin{itemize}
 \item Linux OS
-\item Distribusi Anaconda untuk Python 3
-\item Browser
+\item Distribusi \textsf{Anaconda} untuk Python 3 \url{https://www.anaconda.com/distribution/}
+\item Internet browser seperti 
 \item Editor teks seperti:
   \begin{itemize}
   \item \textsf{gedit} (biasanya sudah tersedia pada banyak distro Linux)
   \item \textsf{VSCode} (\url{https://code.visualstudio.com/})
   \item \textsf{Atom} (\url{https://atom.io/})
   \end{itemize}
+atau Python IDE seperti \textsf{Spyder} (sudah terinstall pada \textsf{Anaconda}).
 \end{itemize}
 
 %\section{Pendahuluan}
 %Python adalah salah satu bahasa pemrograman paling populer.
 %\url{http://www.scipy-lectures.org/language/first_steps.html}
 
-Python Anaconda pada Ubuntu 18.04 di LabKom
-\texttt{/opt/anaconda3}
 
-\section{Mengenal interpreter Python (konsol Python)}
+\section{Cek versi Python}
 
-Terdapat banyak pilihan untuk berinteraksi dengan interpreter 
-atau konsol Python:
-\begin{itemize}
-\item Konsol default Python, dapat dijalankan dengan mengetikkan
-\texttt{python} pada terminal.
-\item IPython, merupakan interpreter Python dengan berbagai fitur tambahan
-seperti \textit{tab-completion} dan \textit{syntax highlighting}.
-IPython 
-\item Jupyter qtconsole
-\item Jupyter notebook
-\end{itemize}
-
-Tampilan awal konsol Python default:
+Ada dua versi utama (\textit{major}) Python yang sekarang digunakan, yaitu
+versi 2 dan versi 3.
+Versi Python yang akan kita gunakan adalah versi 3. Untuk mengecek versi Python,
+Anda dapat mengetikkan perintah berikut.
 \begin{textcode}
-Python 3.6.6 |Anaconda custom (64-bit)| (default, Jun 28 2018, 17:14:51) 
-[GCC 7.2.0] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>>
+python --version
+\end{textcode}
+Pada Ubuntu, biasanya terpasang Python versi 2 dan versi 3. Untuk Python 2 biasanya
+digunakan executable \texttt{python} dan untuk Python 3 digunakan
+executable \texttt{python3}.
+
+
+\section{Mengaktifkan Python dari Anaconda}
+
+Python biasanya sudah terpasang secara default pada banyak distribusi Linux, termasuk
+pada Ubuntu di LabKom TF. Anda dapat mengecek apakah dengan menggunakan perintah
+berikut.
+\begin{textcode}
+which python3
+\end{textcode}
+Jika keluaran yang Anda peroleh adalah
+\begin{textcode}
+/usr/bin/python3
+\end{textcode}
+berarti Python yang Anda gunakan adalah Python dari sistem (Ubuntu).
+
+Distribusi Python Anaconda telah terpasang di LabKom TF pada \texttt{/opt/anaconda3}.
+Anda harus mengaktifkannya dengan menggunakan perintah berikut.
+\begin{textcode}
+source /opt/anaconda3/bin/activate
 \end{textcode}
 
-Tampilan awal IPython
-\begin{textcode}
-Python 3.6.6 |Anaconda custom (64-bit)| (default, Jun 28 2018, 17:14:51) 
-Type 'copyright', 'credits' or 'license' for more information
-IPython 6.4.0 -- An enhanced Interactive Python. Type '?' for help.
 
-In [1]:
-\end{textcode}
+\input{interpreter}
 
-Dalam praktikum ini Anda sebaiknya menggunakan IPython karena lebih
-mudah digunakan. Jika IPython belum terpasang, Anda dapat menggunakan
-konsol Python biasa.
+\input{kode_sumber}
 
-Anda dapat menggunakan interpreter ini untuk menjalankan kode Python.
-Kita akan mulai dengan contoh sederhana yaitu operasi aritmatika
-sederhana.
-\begin{pyconcode}
->>> 2 + 3
-5
->>> 2 / 3
-0.6666666666666666
-\end{pyconcode}
+\input{menggunakan_modul}
 
-Anda juga dapat menggunakan variabel.
-\begin{pyconcode}
->>> a = 3
->>> b = 4.1
->>> a*b
-12.299999999999999
->>> a - b
--1.0999999999999996
->>> a/b
-0.7317073170731708
-\end{pyconcode}
+\input{tipe_data_numerik}
 
-Berbeda dengan C/C++, suatu variabel tidak perlu dideklarasikan atau
-tipenya sebelum digunakan. Python akan mendeduksi tipe variabel berdasarkan
-nilai awal yang diberikan.
+\input{tipe_data_kontainer}
 
-Integer variables::
-\begin{pyconcode}
->>> 1 + 1
-2
->>> a = 4
-\end{pyconcode}
+\input{kontrol_alur}
 
-floats ::
-\begin{pyconcode}
->>> c = 2.1
-\end{pyconcode}
+\input{fungsi}
 
-Python juga mendukung bilangan kompleks.
-\begin{pyconcode}
->>> a = 1.5 + 0.5j
->>> a.real
-1.5
->>> a.imag
-0.5
-\end{pyconcode}
-
-and booleans::
-\begin{pyconcode}
->>> 3 > 4
-False
->>> test = (3 > 4)
->>> test
-False
->>> type(test)
-<type 'bool'>
-\end{pyconcode}
-
-
-\subsection*{Tugas}
-
-Carilah operator matematika yang didukung oleh Python.
-Beberapa sumber berikut dapat Anda gunakan:
-\begin{itemize}
-\item \url{https://www.tutorialspoint.com/python/python_basic_operators.htm}
-\item \url{https://en.wikibooks.org/wiki/Python_Programming/Basic_Math}
-\end{itemize}
-
-
-\section{Kode sumber Python}
-
-Selain menggunakan konsol Python, kita dapat menuliskan program
-yang kita buat dalam suatu file teks dengan ekstensi \texttt{.py}.
-Anda dapat membuat file ini dengan editor yang mendukung Python, beberapa
-diantaranya adalah:
-\begin{itemize}
-\item \textsf{Gedit} yang biasanya sudah terpasang di Ubuntu dan banyak distribusi
-Linux
-\item \textsf{Atom} yang merupakan editor teks multifungsi. Editor ini dapat
-dijalankan baik di Windows, OSX, maupun Linux.
-\item \textsf{Visual Studio Code}, mirip dengan \textsf{Atom}.
-Meskipun dikembangkan oleh Microsoft, editor ini juga dapat dijalankan di Linux dan
-OSX.
-\item \textsf{Spyder} yang merupakan IDE (\textit{integrated development environment}) untuk
-Python.
-\end{itemize}
-
-Misalkan file program Python Anda bernama \texttt{hitung.py}, maka Anda dapat
-mejalankan program ini dari terminal dengan perintah berikut.
-\begin{textcode}
-python hitung.py
-\end{textcode}
-
-Komentar pada Python dimulai dengan tanda \verb|#|.
-
-\section{Modul Python}
-
-Banyak fungsionalitas dari Python yang dikumpulkan dalam sebuat modul.
-Pada praktikum ini dan selanjutnya, kita akan banyak menggunakan modul-modul
-tersebut.
-Modul Python ini ada yang sifatnya standard atau bawaan dan yang lainnya
-harus dipasang terlebih dahulu sebagai suatu paket atau pustaka.
-Modul pertama yang akan kita temui adalah modul \texttt{math}. Modul ini
-adalah modul standard bawaan Python.
-
-Modul ini dapat diakses dengan menggunakan perintah \texttt{import math}.
-\begin{pyconcode}
->>> import math
->>> dir(math)
-['__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'acos', 'acosh', 'asin', 'asinh', 'atan', 'atan2', 'atanh', 'ceil', 'copysign', 'cos', 'cosh', 'degrees', 'e', 'erf', 'erfc', 'exp', 'expm1', 'fabs', 'factorial', 'floor', 'fmod', 'frexp', 'fsum', 'gamma', 'gcd', 'hypot', 'inf', 'isclose', 'isfinite', 'isinf', 'isnan', 'ldexp', 'lgamma', 'log', 'log10', 'log1p', 'log2', 'modf', 'nan', 'pi', 'pow', 'radians', 'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'tau', 'trunc']
-\end{pyconcode}
-
-Perintah \texttt{dir(math)} digunakan untuk mengetahui simbol
-(fungsi dan/atau konstanta) apa saja yang
-didefinisikan dalam module \texttt{math}. Anda dapat menggunakan perintah
-\texttt{help(math.log2)} misalnya, untuk membaca dokumentasi mengenai fungsi ini.
-
-Contoh penggunaan modul \texttt{math}
-\begin{pyconcode}
->>> math.sin(math.pi)
-1.2246467991473532e-16
->>> math.sin(0.5*math.pi)
-1.0
->>> math.sin(0.3*math.pi)
-0.8090169943749475
->>> math.sin(math.pi/3)
-0.8660254037844386
-\end{pyconcode}
-
-Sintaks alternatif berikut ini juga sering digunakan.
-\begin{pythoncode}
-from math import *
-\end{pythoncode}
-Dengan sintaks di atas, semua fungsi pada modul \texttt{math} akan diekspor ke
-konteks global Python.
-Jika kita hanya ingin mengimpor beberapa simbol saja dapat digunakan
-sintaks seperti berikut ini.
-\begin{pythoncode}
-from math import pi, factorial
-\end{pythoncode}
-
-
-\subsection*{Tugas}
-
-Buatlah suatu program sederhana untuk menghitung akar-akar dari
-persamaan kuadrat.
-
-
-
-Fungsi \texttt{type} dapat digunakan untuk mengetahui tipe data dari
-suatu nilai dari variabel atau eskpresi.
-\begin{pyconcode}
->>> type(1)
-<type 'int'>
->>> type(1.)
-<type 'float'>
->>> type(1. + 0j )
-<type 'complex'>
->>> a = 3
->>> type(a)
-<type 'int'>
-\end{pyconcode}
-
-
-Beberapa tipe data dapat dikonversi antara satu dengan yang lainnya.
-\begin{pyconcode}
->>> a = 2
->>> type(a)
-<class 'int'>
->>> b = float(a)
->>> b
-2.0
->>> type(b)
-<class 'float'>
->>> c = 2.3
->>> d = int(2.3)
->>> d
-2
-\end{pyconcode}
-
-\section{Tipe data kontainer}
-Python memiliki beberapa tipe data kontainer yang merupakan kumpulan
-dari beberapa tipe objek.
-
-\subsection{Lists}
-List merupakan kumpulan objek yang memiliki urutan. Objek-objek ini
-dapat memiliki tipe yang berbeda. Contoh
-\begin{pyconcode}
->>> l = [1, 2, 3, 4, 5]
->>> type(l)
-<type 'list'>
-\end{pyconcode}
-
-Kita dapat mengakses suatu objek dengan menggunan indeksnya.
-\begin{pyconcode}
->>> l[2]
-3
-\end{pyconcode}
-
-Indeks negatif dapat digunakan untuk mengakses dari akhir.
-\begin{pyconcode}
->>> l[-1]
-5
->>> l[-2]
-4
-\end{pyconcode}
-
-Mirip dengan bahasa C/C++, indeks pada Python dimulai dari 0.
-
-Operasi slicing dapat digunakan untuk mendapatkan sublist dari
-suatu list (mirip dengan Matlab/Octave/Scilab).
-\begin{pyconcode}
->>> l
-[1, 2, 3, 4, 5]
->>> l[2:4]
-[3, 4]
-\end{pyconcode}
-
-Perhatikan bawah \texttt{l[start:stop]} akan memberikan
-elemen dengan indeks \texttt{i} di mana \texttt{start<= i < stop}.
-Artinya, \texttt{l[start:stop]} akan memiliki
-\texttt{(stop-start)} buah element.
-
-Sintaks untuk slicing: \texttt{l[start:stop:stride]}.
-Semua parameternya bersifat opsional.
-\begin{pyconcode}
->>> l[3:]
-[4, 5]
->>> l[:3]
-[1, 2, 3]
->>> l[::2]
-[1, 3, 5]
-\end{pyconcode}
-
-List bersifat \textit{mutable}, artinya nilainya dapat diubah.
-\begin{pyconcode}
->>> l[0] = 28
->>> l
-[28, 2, 3, 4, 5]
->>> l[2:4] = [3, 8] 
->>> l
-[28, 2, 3, 8, 5]
-\end{pyconcode}
-
-Elemen-element pada suatu list dapat memiliki tipe yang berbeda.
-\begin{pyconcode}
->>> l = [3, 2, 'hello']
->>> l
-[3, 2, 'hello']
->>> l[1], l[2]
-(2, 'hello')
-\end{pyconcode}
-
-Menambahkan dan mengurangi elemen pada suatu list.
-\begin{pyconcode}
->>> l = [1, 2, 3, 4, 5]
->>> l.append(6)
->>> l
-[1, 2, 3, 4, 5, 6]
->>> l.pop()
-6
->>> l
-[1, 2, 3, 4, 5]
->>> l.extend([6, 7])
->>> l
-[1, 2, 3, 4, 5, 6, 7]
->>> l = l[:-2]
->>> l
-[1, 2, 3, 4, 5]
-\end{pyconcode}
-
-Membalikkan urutan pada list.
-\begin{pyconcode}
->>> r = l[::-1]
->>> r
-[5, 4, 3, 2, 1]
-\end{pyconcode}
-
-Menyambung (\texttt{list}) dan mengurangi element pada list.
-\begin{pyconcode}
->>> r + l
-[5, 4, 3, 2, 1, 1, 2, 3, 4, 5]
->>> 2 * r
-[5, 4, 3, 2, 1, 5, 4, 3, 2, 1]
-\end{pyconcode}
-
-Mengurutkan elemen-elemen pada list.
-\begin{pyconcode}
->>> r.sort()
->>> r
-[1, 2, 3, 4, 5]
-\end{pyconcode}
-
-
-Untuk perhitungan numerik dan komputasi performa tinggi, paket
-\textsf{Numpy} lebih sering digunakan. Informasi mengenai \textsf{Numpy}
-dapat ditemukan di \url{www.numpy.org}.
-
-
-\subsection{Strings}
-
-Tipe data string pada Python ditandai dengan menggunakan tanda
-kutip tunggal (\texttt{"}) atau ganda (\texttt{"}). Tiga tanda kutip
-(baik tunggal maupun ganda) dapat digunakan untuk string yang panjang.
-\begin{pyconcode}
-s = 'Hello, how are you?'
-s = "Hi, what's up"
-s = '''Hello, 
-       how are you'''
-s = """Hi,
-   what's up?'''
-\end{pyconcode}
-
-Karakter baris baru adalah \verb|\n| dan karakter tab adalah.
-\verb|\t|.
-
-String dapat dianggap sebagai list dari karakter (huruf), artinya string
-juga memiliki operasi yang sama dengan list.
-
-Mengakses elemen lewat indeks.
-\begin{pyconcode}
->>> a = "hello"
->>> a[0]
-'h'
->>> a[1]
-'e'
->>> a[-1]
-'o'
-\end{pyconcode}
-
-Slicing.
-\begin{pyconcode}
->>> a = "hello, world!"
->>> a[3:6]
-'lo,'
->>> a[2:10:2]
-'lo o'
->>> a[::3]
-'hl r!'
-\end{pyconcode}
-
-Berbeda dengan list, string bersifat \textit{immutable}.
-Kita tidak bisa mengubah karakter pada string, akan tetapi kita dapat
-membuat string baru dari string awal.
-String memiliki banyak metode yang dapat digunakan keperluan
-manipulasi teks.
-
-\subsubsection*{Tugas}
-
-Baca dokumentasi Python mengenai string:
-\url{https://docs.python.org/3/library/string.html}
-
-
-
-\subsection{Dictionary/Kamus}
-
-Tipe data kamus adalah tabel yang yang memetakan kunci ke suatu nilai.
-\begin{pyconcode}
->>> tel = {'emmanuelle': 5752, 'sebastian': 5578}
->>> tel['francis'] = 5915 
->>> tel
-{'sebastian': 5578, 'francis': 5915, 'emmanuelle': 5752}
->>> tel['sebastian']
-5578
->>> tel.keys()
-['sebastian', 'francis', 'emmanuelle']
->>> tel.values()
-[5578, 5915, 5752]
->>> 'francis' in tel
-True
-\end{pyconcode}
-
-Suatu kamus dapat memiliki kunci dan nilai yang memiliki tipe berbeda
-\begin{pyconcode}
->>> d = {'a':1, 'b':2, 3:'hello'}
->>> d
-{'a': 1, 3: 'hello', 'b': 2}
-\end{pyconcode}
-
-\subsection{Tupel}
-Tupel dapat dianggap sebagai list \texttt{immutable}.
-Elemen-elemen tupel ditulis dalam tanda kurung dan dipisahkan dengan
-tanda koma.
-\begin{pyconcode}
->>> t = 12345, 54321, 'hello!'
->>> t[0]
-12345
->>> t
-(12345, 54321, 'hello!')
->>> u = (0, 2)
-\end{pyconcode}
-
-
-
-\section{Kontrol alur program}
-
-\subsection{Percabangan: \texttt{if/elif/else}}
-  
-\begin{pyconcode}
->>> a = 2
->>> if a < 0:
-...     print("a bernilai negatif")
-... else:
-...     print("a bernilai positif")
-... 
-\end{pyconcode}
-
-
-\textbf{Indentasi sangat penting pada Python.}
-
-Jika Anda kesulitan atau tidak nyaman menuliskan di konsol, Anda
-dapat menuliskannya di file dengan ekstensi \texttt{*.py}.
-Anda tidak perlu menuliskan \verb|>>>| atau \verb|...|.
-
-Contoh lain
-\begin{pyconcode}
->>> a = 10 
->>> if a == 1:
-...     print(1)
-... elif a == 2:
-...     print(2)
-... else:
-...     print('A lot')
-... 
-A lot
-\end{pyconcode}
-
-
-\subsection{Perulangan: \texttt{for/range}}
-
-Perulangan dengan indeks
-\begin{pyconcode}
->>> for i in range(4):
-...     print(i)
-... 
-0
-1
-2
-3
-\end{pyconcode}
-
-Iterasi terhadap nilai:
-\begin{pyconcode}
->>> for word in ('cool', 'powerful', 'readable'):
-...     print('Python is %s' % word)
-...
-Python is cool
-Python is powerful
-Python is readable
-\end{pyconcode}
-
-\subsection{Perulangan: \texttt{while/break/continue}}
-
-\begin{pyconcode}
->>> a = 3;
->>> while a < 10:
-...     a = a + 1
-... 
->>> a
-10
-\end{pyconcode}
-
-\texttt{break} dapat digunakan untuk
-keluar dari loop \texttt{for} atau \texttt{while}
-\begin{pyconcode}
->>> a = 10;
->>> while a > 0:
-...     a = a - 2
-...     if a < 3: break
-... 
->>> a
-2
-\end{pyconcode}
-
-
-\texttt{continue} dapat digunakan untuk meneruskan ke
-iterasi selanjutnya (biasanya untuk melangkaui suatu iterasi)
-\begin{pyconcode}
->>> a = [1, 0, 2, 4]
->>> for element in a:
-...     if element == 0:
-...         continue
-...     print(1.0/element)
-...     
-1.0
-0.5
-0.25
-\end{pyconcode}
-
-
-\subsection{Iterasi pada string, list, dan dictionary}
-
-Kita dapat melakukan iterasi terhadap string, list dan dictionary
-\begin{pyconcode}
->>> vowels = 'aeiouy'
->>> for i in 'powerful':
-...     if i in vowels:
-...         print(i),
-...         
-...         
-o e u
-\end{pyconcode}
-
-Contoh
-\begin{pyconcode}
->>> message = "Hello how are you?"
->>> message.split() # mengembalikan list
-['Hello', 'how', 'are', 'you?']
->>> for word in message.split():
-...     print word
-...     
-Hello
-how
-are
-you?
-\end{pyconcode}
-
-Contoh:
-\begin{pyconcode}
->>> words = ('cool', 'powerful', 'readable')
->>> for i in range(0, len(words)):
-....     print(i, words[i])
-....     
-....     
-0 cool
-1 powerful
-2 readable
-\end{pyconcode}
-
-Fungsi \texttt{enumerate} juga dapat digunakan
-\begin{pyconcode}
->>> words = ('cool', 'powerful', 'readable')
->>> for index, item in enumerate(words):
-...     print index, item
-...     
-0 cool
-1 powerful
-2 readable
-\end{pyconcode}
-
-
-Loop pada dictionary dengan menggunakan \texttt{items()}
-\begin{pyconcode}
->>> d = {"a" : 1, "b" : 1.2, "c" : 1j}
->>> for key, val in d.items():
-        print('Key: %s has value: %s' % (key, val)
-Key: a has value: 1
-Key: c has value: 1j
-Key: b has value: 1.2
-\end{pyconcode}
-
-
-\section{Mendefinisikan fungsi}
-
-Sintaks dasar:
-\begin{pyconcode}
->>> def test():
-...     print("in test function")
-...
->>> test()
-in test function
-\end{pyconcode}
-
-\textbf{Ingat bahwa indentasi signifikan pada Python}
-
-Fungsi dapat mengembalikan nilai
-\begin{pyconcode}
->>> def disk_area(radius):
-...     return 3.14 * radius * radius
-...
->>> disk_area(1.5)
->>> 7.0649999999999995
-\end{pyconcode}
-
-Secara default, fungsi mengembalikan \texttt{None}.
-
-Parameter fungsi pada Python dapat berupa parameter wajib yang sesuai
-dengan posisinya pada definisi fungsi.
-
-\begin{pyconcode}
->>> def double_it(x):
-...     return x*2
-... 
->>> double_it(3)
-6
->>> double_it(3.2)
-6.4
->>> double_it()
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-TypeError: double_it() missing 1 required positional argument: 'x'
->>> double_it(3,1)
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-TypeError: double_it() takes 1 positional argument but 2 were given
-\end{pyconcode}
-
-Argumen fungsi pada Python juga dapat bersifat
-opsional, dengan menggunakan kata kunci atau nama argumen.
-Dengan menggunakan argument kata kunci, kita dapat memberikan nilai
-default pada fungsi.
-\begin{pyconcode}
->>> def double_it(x=2):
-...     return x * 2
-...
->>> double_it()
->>> 4
->>> double_it(3)
->>> 6
-\end{pyconcode}
 
 
 \end{document}

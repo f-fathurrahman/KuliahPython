@@ -1,0 +1,57 @@
+\section{Menggunakan modul Python}
+
+Banyak fungsionalitas dari Python yang dikumpulkan dalam sebuat modul.
+Pada praktikum ini dan selanjutnya, kita akan banyak menggunakan modul-modul
+tersebut.
+Modul Python ini ada yang sifatnya standard atau bawaan dan yang lainnya
+harus dipasang terlebih dahulu sebagai suatu paket atau pustaka.
+Modul pertama yang akan kita temui adalah modul \texttt{math}. Modul ini
+adalah modul standard bawaan Python.
+
+Modul ini dapat diakses dengan menggunakan perintah \texttt{import math}.
+\begin{pyconcode}
+>>> import math
+>>> dir(math)
+['__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'acos', 'acosh', 'asin', 'asinh', 'atan', 'atan2', 'atanh', 'ceil', 'copysign', 'cos', 'cosh', 'degrees', 'e', 'erf', 'erfc', 'exp', 'expm1', 'fabs', 'factorial', 'floor', 'fmod', 'frexp', 'fsum', 'gamma', 'gcd', 'hypot', 'inf', 'isclose', 'isfinite', 'isinf', 'isnan', 'ldexp', 'lgamma', 'log', 'log10', 'log1p', 'log2', 'modf', 'nan', 'pi', 'pow', 'radians', 'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'tau', 'trunc']
+\end{pyconcode}
+
+Perintah \texttt{dir(math)} digunakan untuk mengetahui simbol
+(fungsi dan/atau konstanta) apa saja yang
+didefinisikan dalam module \texttt{math}. Anda dapat menggunakan perintah
+\texttt{help(math.log2)} misalnya, untuk membaca dokumentasi mengenai fungsi ini.
+
+Contoh penggunaan modul \texttt{math}
+\begin{pyconcode}
+>>> math.sin(math.pi)
+1.2246467991473532e-16
+>>> math.sin(0.5*math.pi)
+1.0
+>>> math.sin(0.3*math.pi)
+0.8090169943749475
+>>> math.sin(math.pi/3)
+0.8660254037844386
+\end{pyconcode}
+
+Sintaks alternatif berikut ini juga sering digunakan.
+\begin{pythoncode}
+from math import *
+\end{pythoncode}
+Dengan sintaks di atas, semua fungsi pada modul \texttt{math} akan diekspor ke
+konteks global Python.
+Jika kita hanya ingin mengimpor beberapa simbol saja dapat digunakan
+sintaks seperti berikut ini.
+\begin{pythoncode}
+from math import pi, factorial
+\end{pythoncode}
+
+
+\begin{mdframed}[backgroundcolor=myframebg]
+\textbf{Tugas}
+
+Buatlah suatu program sederhana untuk menghitung akar-akar dari
+persamaan kuadrat dengan input dari pengguna. Anda dapat menggunakan
+fungsi input untuk membaca input dari pengguna. Gunakan fungsi
+\texttt{cmath.sqrt} yang dapat menghitung akar kuadrat dari bilangan
+negatif sebagai bilangan kompleks.
+\end{mdframed}
+

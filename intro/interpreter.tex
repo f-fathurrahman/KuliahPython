@@ -1,0 +1,142 @@
+\section{Mengenal interpreter Python (konsol Python)}
+
+Terdapat banyak pilihan untuk berinteraksi dengan interpreter 
+atau konsol Python:
+\begin{itemize}
+\item Konsol default Python, dapat dijalankan dengan mengetikkan
+\texttt{python} pada terminal.
+\item IPython, merupakan interpreter Python dengan berbagai fitur tambahan
+seperti \textit{tab-completion} dan \textit{syntax highlighting}.
+IPython 
+\item Jupyter qtconsole
+\item Jupyter notebook
+\end{itemize}
+
+Tampilan awal konsol Python default:
+\begin{textcode}
+Python 3.6.6 |Anaconda custom (64-bit)| (default, Jun 28 2018, 17:14:51) 
+[GCC 7.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+\end{textcode}
+
+Tampilan awal IPython
+\begin{textcode}
+Python 3.6.6 |Anaconda custom (64-bit)| (default, Jun 28 2018, 17:14:51) 
+Type 'copyright', 'credits' or 'license' for more information
+IPython 6.4.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]:
+\end{textcode}
+
+Dalam praktikum ini Anda sebaiknya menggunakan IPython karena lebih
+mudah digunakan. Jika IPython belum terpasang, Anda dapat menggunakan
+konsol Python biasa.
+
+Anda dapat menggunakan interpreter ini untuk menjalankan kode Python.
+Kita akan mulai dengan contoh sederhana yaitu operasi aritmatika
+sederhana.
+\begin{pyconcode}
+>>> 2 + 3
+5
+>>> 2 / 3
+0.6666666666666666
+\end{pyconcode}
+
+Anda juga dapat mendefinisikan variabel dengan menggunakan operator
+penugasan. Operator penugasan (\textit{assigment})
+pada Python adalah tanda \texttt{=}.
+
+\begin{pyconcode}
+>>> a = 3
+>>> b = 4.1
+>>> a*b
+12.299999999999999
+>>> a - b
+-1.0999999999999996
+>>> a/b
+0.7317073170731708
+\end{pyconcode}
+
+Fungsi \texttt{print} dapat digunakan menuliskan nilai suatu ekspresi dan variabe
+\begin{pyconcode}
+>>> x = 1.2
+>>> print(x)
+1.2
+>>> print(x + 2)
+3.2
+\end{pyconcode}
+
+Pada interpreter, kita dapat langsung mengetikkan variabel untuk mengetahui nilai
+dari variabel atau suatu ekspresi (tanpa menggunakan fungsi \texttt{print}):
+\begin{pyconcode}
+>>> x
+1.2
+>>> x + 2
+3.2
+\end{pyconcode}
+
+Python juga mendukung bilangan kompleks. Contoh:
+\begin{pyconcode}
+>>> a = 1.5 + 0.5j # tidak ada spasi sebelum j
+>>> a.real
+1.5
+>>> a.imag
+0.5
+\end{pyconcode}
+
+Contoh variabel boolean
+\begin{pyconcode}
+>>> 3 > 4
+False
+>>> test = (3 > 4)
+>>> test
+False
+\end{pyconcode}
+
+Fungsi \texttt{type} dapat digunakan untuk mengetahui tipe data dari
+suatu nilai dari variabel atau eskpresi.
+\begin{pyconcode}
+>>> type(1)
+<type 'int'>
+>>> type(1.)
+<type 'float'>
+>>> type(1. + 0j )
+<type 'complex'>
+>>> a = 3
+>>> type(a)
+<type 'int'>
+\end{pyconcode}
+
+Berbeda dengan C/C++, suatu variabel tidak perlu dideklarasikan atau
+tipenya sebelum digunakan. Python akan mendeduksi tipe variabel berdasarkan
+nilai yang diberikan. Berbeda dengan C, variabel pada Python dapat merujuk
+pada suatu nilai dengan tipe data yang berbeda.
+
+\begin{pyconcode}
+>>> z = 1.2
+>>> type(z)
+<class 'float'>
+>>> z = 2
+>>> type(z)
+<class 'int'>
+>>> z = 1 + 2j
+>>> type(z)
+<class 'complex'>
+>>> z = 2 > 3
+>>> type(z)
+<class 'bool'>
+\end{pyconcode}
+
+
+\begin{mdframed}[backgroundcolor=myframebg]
+\textbf{Tugas}
+
+Carilah operator matematika yang didukung oleh Python.
+Beberapa sumber berikut dapat Anda gunakan:
+\begin{itemize}
+\item \url{https://www.tutorialspoint.com/python/python_basic_operators.htm}
+\item \url{https://en.wikibooks.org/wiki/Python_Programming/Basic_Math}
+\end{itemize}
+\end{mdframed}
+

@@ -1,0 +1,173 @@
+\section{Fungsi (subsprogram)}
+
+Sintaks dasar:
+\begin{pyconcode}
+>>> def test():
+...     print("in test function")
+...
+>>> test()
+in test function
+\end{pyconcode}
+
+\textbf{Ingat bahwa indentasi signifikan pada Python}
+
+Fungsi dapat mengembalikan nilai
+\begin{pyconcode}
+>>> def disk_area(radius):
+...     return 3.14 * radius * radius
+...
+>>> disk_area(1.5)
+>>> 7.0649999999999995
+\end{pyconcode}
+
+Secara default, fungsi mengembalikan \texttt{None}.
+
+\subsection{Parameter fungsi}
+
+Parameter fungsi pada Python dapat berupa parameter wajib yang sesuai
+dengan posisinya pada definisi fungsi.
+
+\begin{pyconcode}
+>>> def double_it(x):
+...     return x*2
+... 
+>>> double_it(3)
+6
+>>> double_it(3.2)
+6.4
+>>> double_it()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: double_it() missing 1 required positional argument: 'x'
+>>> double_it(3,1)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: double_it() takes 1 positional argument but 2 were given
+\end{pyconcode}
+
+Argumen fungsi pada Python juga dapat bersifat
+opsional, dengan menggunakan kata kunci atau nama argumen.
+Dengan menggunakan argument kata kunci, kita dapat memberikan nilai
+default pada fungsi.
+\begin{pythoncode}
+def double_it(x=2):
+    return x * 2
+double_it()
+double_it(3)
+\end{pythoncode}
+
+
+\subsection{Passing by value}
+
+Can you modify the value of a variable inside a function? Most languages (C, Java, …)
+distinguish “passing by value” and “passing by reference”. In Python, such a distinction
+is somewhat artificial, and it is a bit subtle whether your variables are going to be modified
+or not. Fortunately, there exist clear rules.
+
+Parameters to functions are references to objects, which are passed by value.
+When you pass a variable to a function, python passes the reference to the object
+to which the variable refers (the value). Not the variable itself.
+
+If the value passed in a function is immutable, the function does not modify the
+caller’s variable. If the value is mutable, the function may modify the caller's
+variable in-place:
+
+\begin{pythoncode}
+def try_to_modify(x, y, z):
+    x = 23
+    y.append(42)
+    z = [99] # ubah z
+    print(x)
+    print(y)
+    print(z)
+
+a = 77    # immutable variable
+b = [99]  # mutable variable
+c = [28]
+try_to_modify(a, b, c)
+print(a)
+print(b)
+print(c)
+\end{pythoncode}
+
+Functions have a local variable table called a local namespace.
+Fungsi memiliki lingkup variabel sendiri. Dalam kode sebelumnya,
+variabel \texttt{x} hanya ada di dalam fungsi \texttt{try\_to\_modify}.
+
+
+\subsection{Global variables}
+
+Variable yang dideklarasikan di luar sebuh fungsi dapat direferensi (digunakan)
+di dalam sebuah fungsi.
+
+\begin{pythoncode}
+x = 5
+def addx(y):
+    return x + y
+z = addx(10)
+print(z)
+\end{pythoncode}
+
+Akan tetapi variable global tersebut tidak dapat dimodifikasi di dalam sebuah
+fungsi, kecuali jika dideklarasikan sebagai \texttt{global} di dalam fungsi
+tersebut.
+
+Bandingkan antara keluaran kode berikut:
+\begin{pythoncode}
+x = 5
+def setx(y):
+    x = y
+    print("x is %d" % x)
+setx(10)
+print(x)
+\end{pythoncode}
+%
+dengan kode berikut ini.
+%
+\begin{pythoncode}
+x = 5
+def setx(y):
+    global x
+    x = y
+    print("x is %d" % x)
+setx(10)
+print(x)
+\end{pythoncode}
+
+
+\subsection{Variable number of parameters}
+
+Dua bentuk khusus dari parameter fungsi:
+\begin{itemize}
+\item \verb|*args|: any number of positional arguments packed into a tuple
+\item \verb|**kwargs|: any number of keyword arguments packed into a dictionary
+\end{itemize}
+
+Contoh:
+
+\begin{pythoncode}
+def variable_args(*args, **kwargs):
+    print("args is", args)
+    print("kwargs is", kwargs)
+variable_args("one", "two", x=1, y=2, z=3)
+\end{pythoncode}
+
+
+\subsection{Functions are objects}
+
+Functions are first-class objects, which means they can be:
+\begin{itemize}
+\item assigned to a variable
+\item an item in a list (or any collection)
+\item passed as an argument to another function.
+\end{itemize}
+
+\begin{pythoncode}
+def variable_args(*args, **kwargs):
+    print("args is", args)
+    print("kwargs is", kwargs)
+va = variable_args
+va('three', x=1, y=2)
+\end{pythoncode}
+
+
