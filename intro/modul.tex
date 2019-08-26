@@ -1,0 +1,82 @@
+\section{Modul}
+
+Seperti yang telah dijelaskan pada bagian awal, selain menggunakan interpreter (secara interaktif),
+kita juga dapat menuliskan instruksi atau program Python pada sebuah file dengan ekstensi \texttt{.py}.
+File ini sering juga disebut dengan \textit{script} yang biasanya berisikan instruksi-instruksi yang
+relatif sederhana dan dapat dijalankan langsung oleh pengguna.
+
+\subsection{\textit{Scripts}}
+
+Sebagai contoh sederhana mari kita coba buat file dengan nama \texttt{halo.py}
+dengan isi sebagai berikut.
+\begin{pythoncode}
+message = "Hello how are you?"
+for word in message.split():
+    print(word)
+\end{pythoncode}
+
+Untuk mengeksekusi \textit{script} ini, kita dapat menggunakan perintah:
+\begin{bashcode}
+python3 hello.py
+\end{bashcode}
+
+Kita juga dapat menjalankan \textit{script} ini pada saat kita menggunakan
+IPython dengan menggunakan sintaks \texttt{\%run nama\_script.py}.
+Contoh:
+\begin{ipython3code}
+In[1]: %run halo.py
+\end{ipython3code}
+Ketika perintah di atas dipanggil, kita script telah dieksekusi dan variabel dan
+simbol yang ada pada script dapat kita akses pada IPython.
+
+\textit{Scripts} juga dapat menerima argumen baris perintah.
+Contoh pada file berikut ini, misalkan dengan nama \texttt{print\_args.py}
+\begin{pythoncode}
+import sys
+print(sys.argv)
+\end{pythoncode}
+Kemudian pada terminal:
+\begin{bashcode}
+$ python3 print_args.py test arguments
+['print_args.py', 'test', 'arguments']
+\end{bashcode}
+
+
+\subsection{Membuat modul}
+
+Jika program kita sudah semakin besar dan kompleks, biasanya kita perlu membagi program
+menjadi beberapa subprogram atau fungsi-fungsi, variabel, dan kelas
+yang ditulis pada suatu file yang mirip
+dengan \textit{script} dan disebut dengan modul.
+
+Misalkan buat file dengan nama \texttt{modulku.py}
+\begin{pythoncode}
+def print_a():
+    print("Ini adalah fungsi print_a dari modulku")
+
+def print_b():
+    print("Ini adalah fungsi print_b dari modulku")
+
+c = 2
+d = 2
+\end{pythoncode}
+
+Pada file ini kita mendefinisikan dua fungsi \verb|print_a| dan \verb|print_b|.
+Misalkan kita ingin menggunakan fungsi \verb|print_a| dari interpreter.
+Kita dapat mengeksekusi file/\textit{script} atau meng-importnya sebagai
+modul.
+
+\begin{pythoncode}
+import modulku
+modulku.print_a()
+modulku.print_b()
+\end{pythoncode}
+
+Jika kita mengubah modul dan ingin mengimportnya pada suatu sesi yang sedang berjalan
+kita hanya akan mendapatkan modul yang lama.
+Untuk menggunakan module yang sudah terupdate kita harus melakukan \textit{reload}:
+\begin{pythoncode}
+import importlib
+importlib.reload(modulku)
+\end{pythoncode}
+

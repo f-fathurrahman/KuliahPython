@@ -143,40 +143,35 @@ print(x)
 \end{pythoncode}
 
 
-\subsection{Variable number of parameters}
-
-Dua bentuk khusus dari parameter fungsi:
-\begin{itemize}
-\item \verb|*args|: any number of positional arguments packed into a tuple
-\item \verb|**kwargs|: any number of keyword arguments packed into a dictionary
-\end{itemize}
-
-Contoh:
-
-\begin{pythoncode}
-def variable_args(*args, **kwargs):
-    print("args is", args)
-    print("kwargs is", kwargs)
-variable_args("one", "two", x=1, y=2, z=3)
-\end{pythoncode}
+%\subsection{Variable number of parameters}
+%Dua bentuk khusus dari parameter fungsi:
+%\begin{itemize}
+%\item \verb|*args|: any number of positional arguments packed into a tuple
+%\item \verb|**kwargs|: any number of keyword arguments packed into a dictionary
+%\end{itemize}
+%Contoh:
+%\begin{pythoncode}
+%def variable_args(*args, **kwargs):
+%    print("args is", args)
+%    print("kwargs is", kwargs)
+%variable_args("one", "two", x=1, y=2, z=3)
+%\end{pythoncode}
 
 
-\subsection{Functions are objects}
-
-Functions are first-class objects, which means they can be:
-\begin{itemize}
-\item assigned to a variable
-\item an item in a list (or any collection)
-\item passed as an argument to another function.
-\end{itemize}
-
-\begin{pythoncode}
-def variable_args(*args, **kwargs):
-    print("args is", args)
-    print("kwargs is", kwargs)
-va = variable_args
-va('three', x=1, y=2)
-\end{pythoncode}
+%\subsection{Functions are objects}
+%Functions are first-class objects, which means they can be:
+%\begin{itemize}
+%\item ditugaskan ke suatu variabel
+%\item an item in a list (or any collection)
+%\item passed as an argument to another function.
+%\end{itemize}
+%\begin{pythoncode}
+%def variable_args(*args, **kwargs):
+%    print("args is", args)
+%    print("kwargs is", kwargs)
+%va = variable_args
+%va('three', x=1, y=2)
+%\end{pythoncode}
 
 \subsection{Metode}
 
