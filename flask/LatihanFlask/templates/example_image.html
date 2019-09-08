@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>Latihan Flask: Contoh Gambar</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+
+<h2>Ini adalah bebek kuning</h2>
+
+<img src={{ url_for('static', filename='duck.jpg') }}>
+
+</body>
+
+</html>
