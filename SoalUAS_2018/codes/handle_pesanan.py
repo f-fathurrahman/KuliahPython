@@ -1,6 +1,7 @@
 from flask import Flask, request
 import datetime
 
+print(__name__)
 app = Flask(__name__)
 
 @app.route("/process-data")
